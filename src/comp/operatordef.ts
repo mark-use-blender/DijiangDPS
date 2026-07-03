@@ -1,4 +1,4 @@
-import type { timeline, operator } from "./dpsengine";
+import type { timeline, operator, trigPackage, trigPackageArr } from "./dpsengine";
 import { Optype, Proc } from "./dpsengine";
 
 
@@ -12,8 +12,9 @@ export function opdef(operter:string){
 
 
 
-function Laevatain(process:Proc,tl:timeline,op?:Optype,offset?:number)
+function Laevatain(process:Proc,tl:timeline,op?:Optype,offset?:number,position?:number)
 {
+    var tp:trigPackage[] = [];
     switch (process){
         case Proc.Ini:
             tl["LaevatainOp"] = [];
@@ -23,6 +24,7 @@ function Laevatain(process:Proc,tl:timeline,op?:Optype,offset?:number)
             tl["LaevatainULTwilight"] = [];
             if ("HeatInfliction" in tl){tl["HeatInfliction"] = [];}
             if ("Combustion" in tl){tl["Combustion"] = [];}
+            if (position){tl[String(position)] = [];}
             break;
         case Proc.Popu:
             if (op && offset){
@@ -39,5 +41,5 @@ function Laevatain(process:Proc,tl:timeline,op?:Optype,offset?:number)
         case Proc.Post:
             break;
     }
-    return tl
+    return tp
 }
