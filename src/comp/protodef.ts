@@ -65,7 +65,7 @@ export type BuffType =
 "HeatSusceptibility"|
 "ElectricSusceptibility"|
 "CryoSusceptibility"|
-"NatureSusceptibility"; //endfield trigger types
+"NatureSusceptibility";
 export type CalculationTick = () =>;
 export type ActionTick = () =>;
 export type DamageTick = () =>;
