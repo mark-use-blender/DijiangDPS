@@ -1,0 +1,1 @@
+actionArr =decode> executionArr =execute> buff TL and damage EQ  =damage calculation> output
