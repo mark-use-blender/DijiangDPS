@@ -2,7 +2,7 @@ import * as proto from "./protodef";
 
 export abstract class Operators implements  proto.OperatorCL {
     abstract OperaterStats: proto.OperatorInt    
-    abstract initArray(tl: proto.Timeline): proto.Timeline
+    abstract initArray(tl: proto.Timeline): void;
 }
 
 
@@ -12,11 +12,25 @@ export class Leavatain extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
-        
-        return tl
+    initArray(tl: proto.Timeline): void{
+
     }
 }
+
+
+
+export class Camille  extends Operators {
+    OperaterStats: proto.OperatorInt
+    constructor(stat:proto.OperatorInt){
+        super();
+        this.OperaterStats = stat
+    }
+    initArray(tl: proto.Timeline): void{
+        
+        
+    }
+}
+
 
 export class MiFu  extends Operators {
     OperaterStats: proto.OperatorInt
@@ -24,9 +38,9 @@ export class MiFu  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -36,9 +50,9 @@ export class Endmin  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -48,9 +62,9 @@ export class LiFeng  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -60,9 +74,9 @@ export class Rossi  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -72,9 +86,9 @@ export class Ember  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -84,9 +98,9 @@ export class Gilberta  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -96,9 +110,9 @@ export class Ardelia  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -108,9 +122,9 @@ export class TangTang  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -121,9 +135,9 @@ export class Pog  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -134,9 +148,9 @@ export class LastRite  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -146,9 +160,9 @@ export class ZhuangFangYi  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -158,9 +172,9 @@ export class ChenQianYu  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -170,9 +184,9 @@ export class SnowShine  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -182,9 +196,9 @@ export class XaiHi  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -194,9 +208,9 @@ export class Perlica  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -206,9 +220,9 @@ export class WulfGard  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -218,9 +232,9 @@ export class ArcLight  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -230,9 +244,9 @@ export class Alesh  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -242,9 +256,9 @@ export class Avywenna  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -254,9 +268,9 @@ export class DaPan  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -266,9 +280,9 @@ export class Eatella  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -278,9 +292,9 @@ export class Catcher  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -290,9 +304,9 @@ export class Antal  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -302,9 +316,9 @@ export class Fluorite  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -314,9 +328,9 @@ export class Akekuri  extends Operators {
         super();
         this.OperaterStats = stat
     }
-    initArray(tl: proto.Timeline): proto.Timeline {
+    initArray(tl: proto.Timeline): void{
         
-        return tl
+        
     }
 }
 
@@ -348,7 +362,8 @@ const oparr: Record<string, OperatorConstructor> = {
     "Catcher": Catcher,
     "Antal": Antal,
     "Fluorite": Fluorite,
-    "Akekuri": Akekuri
+    "Akekuri": Akekuri,
+    "Camille": Camille
 };
 
 export function OperatorDef(op: string): OperatorConstructor | undefined {

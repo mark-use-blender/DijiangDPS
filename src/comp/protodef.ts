@@ -66,9 +66,9 @@ export type BuffType =
 "ElectricSusceptibility"|
 "CryoSusceptibility"|
 "NatureSusceptibility";
-export type CalculationTick = () =>;
-export type ActionTick = () =>;
-export type DamageTick = () =>;
+export type CalculationTick = (tl:Timeline,of:number) => void;
+export type ActionTick = (tl:Timeline,of:number) => void;
+export type DamageTick = (tl:Timeline,of:number) => void;
 export type TriggerPacket = [TriggerType,number];
 export type StateMachine = number;
 export type Potential = 0|1|2|3|4|5;
@@ -76,14 +76,13 @@ export type Rank = 0|1|2|3|4|5|6|7|8|9|10|11|12;
 export type Stat = 0|1|2|3|4|5|6|7|8|9;
 
 export interface Timeline{
-    StatusArr: {[x:StatusType]:StatusLevel[]};
-    BuffArr: {[x:BuffType]:BuffLevel[]};
-    StateMachineArr: {[x:string]:StateMachine[]};
-    CalculationTickArr: {[x:string]:CalculationTick[]};
-    ActionTickArr: {[x:string]:ActionTick[]};
-    DamageTickArr: {[x:string]:DamageTick[]};
-    TriggerPacketArr: {[x:string]:TriggerPacket[]};
-
+    StatusArr: Record<keyof StatusType, StatusLevel[]>;
+    BuffArr: Record<keyof BuffType, BuffLevel[]>;
+    StateMachineArr: { [key: string]: StateMachine[] };
+    CalculationTickArr: { [key: string]: CalculationTick[] };
+    ActionTickArr: { [key: string]: ActionTick[] };
+    DamageTickArr: { [key: string]: DamageTick[] };
+    TriggerPacketArr: { [key: string]: TriggerPacket[] };
 }
 
 
@@ -128,12 +127,6 @@ export interface OperatorInt {
 
 export interface OperatorCL {
     OperaterStats:OperatorInt;
-    initArray(tl:Timeline):Timeline
-
-    
-
-
-
-    
+    initArray(tl:Timeline):void;
 }
 
