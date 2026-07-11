@@ -91,6 +91,40 @@ class Xiranflow  extends Gear {
 
 
 
+class Qingbo  extends Gear {
+    GearStats: proto.GearInt
+    constructor(stat:proto.GearInt){
+        super();
+        this.GearStats = stat
+    }
+    initArray(tl: proto.Timeline): void{
+        let bufflevel: BuffLevel[] = []
+        tl["BuffArr"][(this.GearStats.Host.name+"SkillDMGDealt"+"Qingbo")] = bufflevel;
+    }
+    tick(tl: proto.Timeline,offset:number): void{
+        let curr = tl["TriggerPacketArr"][this.GearStats.Host.name][offset]
+        let buff = 0;
+
+        if ("Skill:ComboSkills" in curr) {
+            buff = 0.2;
+
+        }
+        
+
+        if (buff > 0) {
+
+            let bufflevel: BuffLevel[] = tl["BuffArr"][(this.GearStats.Host.name+"SkillDMGDealt"+"Qingbo")]
+
+            for (let i = 0;i<(15*proto.StepMultiplier);i++){
+                bufflevel[i+offset] = Math.min(bufflevel[i+offset]+buff,0.4);
+            }
+            tl["BuffArr"][(this.GearStats.Host.name+"NatureDMGDealt"+"Qingbo")]=bufflevel;
+
+        }
+
+    }
+}
+
 
 
 
@@ -98,7 +132,8 @@ type GearConstructor = new (stat: proto.GearInt) => Gear;
 
 const geararr: Record<string, GearConstructor> = {
     "GrizzledEdge":GrizzledEdge,
-    "Xiranflow":Xiranflow
+    "Xiranflow":Xiranflow,
+    "Qingbo":Qingbo
 };
 
 export function OperatorDef(op: string): GearConstructor | undefined {
