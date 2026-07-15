@@ -1,5 +1,6 @@
 export const StepMultiplier=10; 
 export const cobmowindow = 10;
+export const normalattackstageexpire = 5;
 export type StatusLevel =  0|1|2|3|4;
 export type BuffLevel = number;
 export type TriggerType = 

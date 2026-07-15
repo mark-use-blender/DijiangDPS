@@ -291,47 +291,107 @@ export class Leavatain extends Operators {
         tl.StateMachineArr["leavatainUltimateEnergy"] = [];
         tl.StateMachineArr["leavatainComboCooldown"] = [];
         tl.StateMachineArr["leavatainComboAvailable"] = [];
+        tl.StateMachineArr["leavatainNormalAttackStage"] =[];
         this.team = tl.Team
     }
     tatic(action: proto.MoveType, offset: number, tl: proto.Timeline): void {
         switch(action){
             case "NO":
-                tl.ActionTickArr["leavatain"][offset] = this.normalattack
+                tl.ActionTickArr["leavatain"][offset] = this.normalattackaction
                 break;
             case "BS":
-                tl.ActionTickArr["leavatain"][offset] = this.battleskill
+                tl.ActionTickArr["leavatain"][offset] = this.battleskillaction
                 break;
             case "CS":
-                tl.ActionTickArr["leavatain"][offset] = this.comboskill
+                tl.ActionTickArr["leavatain"][offset] = this.comboskillaction
                 break;
             case "UL":
-                tl.ActionTickArr["leavatain"][offset] = this.ultimate
+                tl.ActionTickArr["leavatain"][offset] = this.ultimateaction
                 break;
             case "OT":
                 break;
         }
         
+    
     }
-    normalattack(tl: proto.Timeline,offset: number): void{
+
+    normalattackaction(tl:proto.Timeline,offset: number): void{
         if (tl.StateMachineArr["leavatainUltimate"][offset]===1){
             tl.CalculationTickArr["leavatain"][offset] = this.ultimateNormalAttackCalculation;
         }
         else{
             tl.CalculationTickArr["leavatain"][offset] = this.normalattackcalculation;
         }
+
     }
-    battleskill(tl: proto.Timeline,offset: number): void{
-        
+    ultimateNormalAttackCalculation(tl: proto.Timeline,offset: number): void{
+
+    }
+    normalattackcalculation(tl: proto.Timeline,offset: number): void{
+
+    }
+
+
+
+
+    battleskillaction(tl:proto.Timeline,offset: number): void{
         if (tl.StateMachineArr["leavatainMeltingFlame"][offset]===4){
             tl.StateMachineArr["leavatainMeltingFlame"][offset] = 0;
+            tl.CalculationTickArr["leavatain"].length = offset;
+            if (tl.StateMachineArr["leavatainUltimate"][offset]===1){
+                var off1 = 0;
+                var off2 = 1;
+                var offadd = 2;
+                tl.CalculationTickArr["leavatain"][offset+(off1*proto.StepMultiplier)] = this.BattleSkillBasicAttackUltSEQ1
+                tl.CalculationTickArr["leavatain"][offset+(off2*proto.StepMultiplier)] = this.BattleSkillBasicAttackUltSEQ2
+                tl.CalculationTickArr["leavatain"][offset+(offadd*proto.StepMultiplier)] = this.BattleSkillBasicAttackUltAdditional
+            }
+            else{
+                var off1 = 0;
+                var off2 = 1;
+                tl.CalculationTickArr["leavatain"][offset+(off1*proto.StepMultiplier)] = this.BattleSkillBasicAttackDMGovertime
+                tl.CalculationTickArr["leavatain"][offset+(off2*proto.StepMultiplier)] = this.BattleSkillBasicAttackAdditional
+
+            }
 
         }
         else{
             tl.StateMachineArr["leavatainMeltingFlame"][offset] = Math.min((tl.StateMachineArr["leavatainMeltingFlame"][offset] ?? 0) + 1, 4);
+            tl.CalculationTickArr["leavatain"].length = offset;
+            if (tl.StateMachineArr["leavatainUltimate"][offset]===1){
+                var off1 = 0;
+                var off2 = 1;
+                tl.CalculationTickArr["leavatain"][offset+(off1*proto.StepMultiplier)] = this.BattleSkillBasicAttackUltSEQ1
+                tl.CalculationTickArr["leavatain"][offset+(off2*proto.StepMultiplier)] = this.BattleSkillBasicAttackUltSEQ2
+            }
+            else{
+                var off1 = 0;
+                var off2 = 1;
+                tl.CalculationTickArr["leavatain"][offset+(off1*proto.StepMultiplier)] = this.BattleSkillBasicAttackDMGovertime
+            }
         }
 
     }
-    comboskill(tl: proto.Timeline,offset: number): void{
+
+    BattleSkillBasicAttackUltSEQ1(tl:proto.Timeline,offset:number):void{
+
+    }
+    BattleSkillBasicAttackUltSEQ2(tl:proto.Timeline,offset:number):void{
+
+    }
+    BattleSkillBasicAttackUltAdditional(tl:proto.Timeline,offset:number):void{
+
+    }
+    BattleSkillBasicAttackDMGovertime(tl:proto.Timeline,offset:number):void{
+
+    }
+    BattleSkillBasicAttackAdditional(tl:proto.Timeline,offset:number):void{
+
+    }
+
+
+
+    comboskillaction(tl:proto.Timeline,offset:number): void{
         if (tl.StateMachineArr["leavatainComboAvailable"][offset]===1){
             for (let i=0;i<proto.cobmowindow*proto.StepMultiplier;i++){
                     tl.StateMachineArr["leavatainComboAvailable"][offset+i] = 0
@@ -342,6 +402,8 @@ export class Leavatain extends Operators {
                 }
             tl.TriggerPacketArr["leavatain"][offset]["SkillComboSkills"] = 1
             tl.StateMachineArr["leavatainMeltingFlame"][offset] = Math.min((tl.StateMachineArr["leavatainMeltingFlame"][offset] ?? 0) + 1, 4)
+            tl.CalculationTickArr["leavatain"].length = offset;
+            tl.CalculationTickArr["leavatain"][offset] = this.comboskill
             //todo
 
         }
@@ -349,9 +411,9 @@ export class Leavatain extends Operators {
             tl.Error[offset]="ERROR: Combo not available"
         }
 
-    }
 
-    ultimate(tl: proto.Timeline,offset: number): void{
+    }
+    ultimateaction(tl:proto.Timeline,offset:number): void{
         if ((tl.StateMachineArr["leavatainUltimateEnergy"][offset] ?? 0) >= this.ultimatumstat[0]){
             tl.StateMachineArr["leavatainUltimateEnergy"][offset] =0;
             for (let i = 0; i < this.ultimatumstat[1]*proto.StepMultiplier;i++){
@@ -361,12 +423,20 @@ export class Leavatain extends Operators {
         }
 
     }
-    ultimateNormalAttackCalculation(tl: proto.Timeline,offset: number): void{
+
+    normalattack(tl: proto.Timeline,offset: number): void{
+        
+    }
+
+    comboskill(tl: proto.Timeline,offset: number): void{
+    
+    }
+
+    ultimate(tl: proto.Timeline,offset: number): void{
+    
 
     }
-    normalattackcalculation(tl: proto.Timeline,offset: number): void{
-
-    }
+   
     tick(tl: proto.Timeline,offset: number): void{
         tl.StateMachineArr["leavatainMeltingFlame"][offset+1] = (tl.StateMachineArr["leavatainMeltingFlame"][offset] ?? 0);
         if ((tl.StateMachineArr["leavatainComboCooldown"][offset] ?? 0)===0 ){
